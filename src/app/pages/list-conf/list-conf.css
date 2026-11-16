@@ -1,0 +1,20 @@
+.conf-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.conf-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.conf-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.label {
+  font-weight: 600;
+}
