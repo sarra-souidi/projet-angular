@@ -1,0 +1,55 @@
+<section class="conf-section">
+  <div class="d-flex align-items-center gap-3 mb-3">
+    <div class="icon">📅</div>
+    <div>
+      <h3 class="mb-0">{{ title }}</h3>
+      <p class="text-muted mb-0">Tapez une partie du titre pour chercher une conférence.</p>
+    </div>
+  </div>
+
+  <!-- Two-way binding [(ngModel)] : recherche -->
+  <input type="text" class="form-control search mb-4"
+         placeholder="Taper le titre de la conférence"
+         [(ngModel)]="searchTitle" />
+
+  <div class="row g-3">
+    <!-- @for : parcourir la liste -->
+    @for (conf of list; track conf.id) {
+
+      <!-- @if : filtre de recherche (partie ou totalité du titre) -->
+      @if (conf.title.toLowerCase().includes(searchTitle.toLowerCase())) {
+
+        <!-- @let : places restantes -->
+        @let reste = conf.maxParticipants - conf.nbParticipants;
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="conf-card">
+            <!-- Pipe uppercase -->
+            <h5>{{ conf.title | uppercase }}</h5>
+            <!-- Pipe date -->
+            <p><strong>Date :</strong> {{ conf.date | date: 'dd/MM/yyyy' }}</p>
+            <p><strong>Lieu :</strong> {{ conf.place }}</p>
+            <p><strong>Places restantes :</strong> {{ reste }}</p>
+
+            <!-- Directive ngClass : couleur du bouton -->
+            <!-- Event binding (click) : +1 participant -->
+            <button class="btn-inscrire"
+                    [ngClass]="{
+                      'vert': reste >= 10,
+                      'orange': reste > 0 && reste < 10,
+                      'rouge': reste == 0
+                    }"
+                    [disabled]="reste == 0"
+                    (click)="participate(conf)">
+              S'inscrire
+            </button>
+          </div>
+        </div>
+      }
+
+    } @empty {
+      <!-- Message si aucune conférence -->
+      <p class="text-center text-muted">Aucune conférence enregistrée.</p>
+    }
+  </div>
+</section>

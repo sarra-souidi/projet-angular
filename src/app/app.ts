@@ -1,15 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Header } from './sharedComponent/header/header';
+import { NavMenu } from './sharedComponent/nav-menu/nav-menu';
 import { Footer } from './sharedComponent/footer/footer';
 import { Home } from './pages/home/home';
-import { ListConf } from './pages/list-conf/list-conf';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Home, ListConf, Footer],
+  imports: [Header, NavMenu, Home, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('frontendProject');
-}
+export class App {}

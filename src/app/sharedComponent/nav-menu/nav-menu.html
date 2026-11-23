@@ -1,0 +1,9 @@
+<nav class="nav-menu">
+  <!-- @for : on parcourt le tableau links -->
+  @for (link of links; track link) {
+    <!-- Class binding [class.active] + Event binding (click) -->
+    <a href="#" [class.active]="link == activeLink" (click)="select(link)">
+      {{ link }}
+    </a>
+  }
+</nav>

@@ -1,0 +1,22 @@
+<section class="box">
+  <div class="icon">👥</div>
+  <div class="flex-grow-1">
+    <h3>Liste des amis</h3>
+
+    <!-- Two-way binding [(ngModel)] -->
+    <div class="d-flex gap-2 mb-2">
+      <input class="form-control" placeholder="Nom de l'ami" [(ngModel)]="newFriend" />
+      <button class="btn btn-outline-success" (click)="addFriend()">Ajouter</button>
+    </div>
+    <small class="text-muted">Vous tapez : {{ newFriend }}</small>
+
+    <!-- @for + @empty -->
+    <ul class="mt-2 mb-0">
+      @for (friend of friends; track $index) {
+        <li>{{ friend }}</li>
+      } @empty {
+        <li>Aucun ami.</li>
+      }
+    </ul>
+  </div>
+</section>

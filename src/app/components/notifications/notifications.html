@@ -1,0 +1,21 @@
+<section class="box">
+  <div class="icon">🔔</div>
+  <div>
+    <h3>Zone de notifications</h3>
+    <p>Vous avez {{ notifications.length }} nouvelles notifications.</p>
+
+    <!-- Event binding (click) -->
+    <button class="btn btn-outline-warning btn-sm" (click)="toggle()">
+      @if (show) { Masquer } @else { Afficher } les notifications
+    </button>
+
+    <!-- @if : afficher ou masquer -->
+    @if (show) {
+      <ul class="mt-2 mb-0">
+        @for (notif of notifications; track $index) {
+          <li>{{ notif }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>
